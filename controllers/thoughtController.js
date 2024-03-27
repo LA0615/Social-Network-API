@@ -89,13 +89,9 @@ const { Thought, User } = require('../models');
     try {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
-        { $pull: { reactions: { reactionId: req.params.reactionId } } },
+        { $pull: { reactions: { _id: req.params.reactionId } } },
         { runValidators: true, new: true }
       );
-
-      if (!thought) {
-        res.status(404).json({ message: 'No thought with this id!' });
-      }
 
       res.json(thought);
     } catch (err) {
