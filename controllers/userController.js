@@ -14,7 +14,8 @@ const getUsers = async (req, res) => {
 }
 const getSingleUser = async (req, res) => {
     try {
-        const user = await User.findOne({ _id: req.params.userId })
+        console.log(req.params);
+        const user = await User.findById(req.params.userId )
             .populate('friends')
             .populate('thoughts');
 
